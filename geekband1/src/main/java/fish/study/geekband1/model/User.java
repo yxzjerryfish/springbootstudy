@@ -2,6 +2,8 @@ package fish.study.geekband1.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * User.
  *
@@ -13,4 +15,5 @@ import lombok.Data;
 public class User {
     private int id;
     private String name;
+    private List userLst;
 }

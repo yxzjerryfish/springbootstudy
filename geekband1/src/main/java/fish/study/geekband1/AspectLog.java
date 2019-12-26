@@ -1,6 +1,7 @@
 package fish.study.geekband1;
 
 import com.alibaba.fastjson.JSON;
+import fish.study.geekband1.Constant.KeyValueMap;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -10,6 +11,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 
@@ -21,7 +23,7 @@ import java.lang.reflect.Field;
  * @author: fish paradise
  */
 @Aspect
-@Order(0)
+@Order(1)
 @Component
 @Slf4j
 public class AspectLog {
@@ -36,9 +38,20 @@ public class AspectLog {
         String before  = "{";
         String fileString = "";
         for (Field field:fields){
-            String m = "\"\"";
-            if (field.getType().getName().equals("int")){
-                m = "1234";
+//            String m = "\"\"";
+//            if (field.getType().getName().equals("int")){
+//                m = "1234";
+//            }
+//            if(field.getType().getName().equals("java.util.ArrayList")){
+//                m = "[]";
+//            }
+//            if(field.getType().getName().equals("java.util.List")){
+//                m = "[]";
+//            }
+
+            String m = KeyValueMap.mappingMap.get(field.getType().getName());
+            if(StringUtils.isEmpty(m)){
+                m = "\"\"";
             }
             String beforefiled = "\""+field.getName()+"\" : "+m + ",";
             log.info("************************************************");
@@ -46,6 +59,6 @@ public class AspectLog {
             fileString = fileString + beforefiled;
         }
         log.info(before + fileString + "}");
-//        point.proceed();
+        point.proceed();
     }
 }
