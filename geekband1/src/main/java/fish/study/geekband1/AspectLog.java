@@ -36,7 +36,11 @@ public class AspectLog {
         String before  = "{";
         String fileString = "";
         for (Field field:fields){
-            String beforefiled = "\""+field.getName()+"\" : \"\"" + ",";
+            String m = "\"\"";
+            if (field.getType().getName().equals("int")){
+                m = "1234";
+            }
+            String beforefiled = "\""+field.getName()+"\" : "+m + ",";
             log.info("************************************************");
             log.info(field.getName() + " "+ field.getType());
             fileString = fileString + beforefiled;
