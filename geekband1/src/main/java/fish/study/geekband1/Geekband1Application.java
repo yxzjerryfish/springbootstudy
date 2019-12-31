@@ -20,7 +20,7 @@ public class Geekband1Application implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		Properties properties = PropertiesLoaderUtils.loadAllProperties("keyValue.properties");
-		for (Map.Entry pro:properties.entrySet()){
+		for (Map.Entry<Object,Object> pro:properties.entrySet()){
 			KeyValueMap.mappingMap.put(pro.getKey().toString(),pro.getValue().toString());
 		}
 	}

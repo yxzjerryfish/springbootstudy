@@ -33,22 +33,11 @@ public class AspectLog {
     @Around("cut()")
     public void After(ProceedingJoinPoint point) throws Throwable {
         MethodSignature signature = (MethodSignature) point.getSignature();
-        Class cls = signature.getReturnType();
+        Class<?> cls = signature.getReturnType();
         Field[] fields =  cls.getDeclaredFields();
         String before  = "{";
         String fileString = "";
         for (Field field:fields){
-//            String m = "\"\"";
-//            if (field.getType().getName().equals("int")){
-//                m = "1234";
-//            }
-//            if(field.getType().getName().equals("java.util.ArrayList")){
-//                m = "[]";
-//            }
-//            if(field.getType().getName().equals("java.util.List")){
-//                m = "[]";
-//            }
-
             String m = KeyValueMap.mappingMap.get(field.getType().getName());
             if(StringUtils.isEmpty(m)){
                 m = "\"\"";
