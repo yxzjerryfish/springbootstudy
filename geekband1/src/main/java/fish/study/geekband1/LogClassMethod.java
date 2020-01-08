@@ -1,10 +1,13 @@
 package fish.study.geekband1;
 
+import fish.study.geekband1.Utils.DateUtils;
 import fish.study.geekband1.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.apache.bcel.generic.Type;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.util.StringUtils;
-
+import java.lang.reflect.Method;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -40,7 +43,14 @@ public class LogClassMethod {
         log.info(fileString.toString());
     }
 
-    public static void main(String[] args) {
+    public static void getMethodLog(Method method){
+        Class<?>  clz= method.getReturnType();
+        System.out.println(clz);
+    }
+
+    public static void main(String[] args) throws NoSuchMethodException {
         getLog(User.class);
+        Method method = DateUtils.class.getMethod("getDayOfWeek");
+        getMethodLog(method);
     }
 }
