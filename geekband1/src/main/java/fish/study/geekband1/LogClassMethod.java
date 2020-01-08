@@ -1,6 +1,7 @@
 package fish.study.geekband1;
 
 import fish.study.geekband1.Utils.DateUtils;
+import fish.study.geekband1.controller.UserController;
 import fish.study.geekband1.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.apache.bcel.generic.Type;
@@ -45,12 +46,12 @@ public class LogClassMethod {
 
     public static void getMethodLog(Method method){
         Class<?>  clz= method.getReturnType();
-        System.out.println(clz);
+        getLog(clz);
     }
 
     public static void main(String[] args) throws NoSuchMethodException {
         getLog(User.class);
-        Method method = DateUtils.class.getMethod("getDayOfWeek");
+        Method method = UserController.class.getMethod("getUser");
         getMethodLog(method);
     }
 }
