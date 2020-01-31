@@ -20,5 +20,13 @@ public class Test1 {
     CharBuffer charBuffer = CharBuffer.wrap(charArray);
 
         System.out.println(bytebuffer.capacity());
+
+        char[] charArrays = new char[]{'a','b','c','d','e'};
+        CharBuffer buffer = CharBuffer.wrap(charArrays);
+        System.out.println("A capacity () ="+ buffer.capacity() + " limit ()="+buffer.limit ());
+        buffer.limit(3);
+        System.out.println();
+        System.out.println("A capacity () ="+ buffer.capacity() + " limit ()="+buffer.limit ());
+
     }
 }
